@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body{
+    background-color: #35374B;
+}
+#Header{
+    width: 300px;
+    margin: auto;
+    padding-top: 110px;
+    letter-spacing: 7px;
+    word-spacing: 1px;
+}
+#Judul{
+    font-size: 20px;
+    font-family: "Courier Prime" , monospace;
+    font-weight: 200;
+    color: #E2DAD6;
+    text-align: center;
+}
+.Exp{
+    font-size: 20px;
+    font-family: "Courier Prime" , monospace;
+    font-weight: 200;
+    color: #E2DAD6;
+    text-align: center;
+
+}
+#TextBox{
+    background-color: hsl(235, 17%, 55%);
+    width: 300px;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 30px;
+}
+
+.Action{
+    font-size: 18px;
+    font-family: "Red Hat Display" , sans-serif;
+    color: hsl(208, 46%, 23%);
+    font-weight: 350;
+    width: 250px;
+    letter-spacing: 2px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    padding-top: 0px;
+}
+#Opsi{
+    font-size: 16px;
+    font-family: "Red Hat Display" , sans-serif;
+    color: aliceblue;
+    font-weight: 300;
+    width: 150px;
+    height: fit-content;
+    letter-spacing: 4px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    padding-top: 0px;
+}
+#InputCtn{
+    width: 200px;
+    margin: auto;
+    padding-top: 20px ;  
+    display: flex;
+}
+.input{
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    background-color: hsl(231, 26%, 88%);
+    color: hsl(20, 17%, 26%);
+    padding: 10px;
+    font-family: "Courier Prime",monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    transition: background-color 0.5s ,color 0.75s;
+}
+.input:hover{
+    background-color: hsl(231, 26%, 58%);
+}
+.input:active{
+    color: #E2DAD6;
+    background-color: #474F7A;
+}
+.Send{
+    width: 70px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    color: #E2DAD6;
+    background-color: #DC5F00;
+    padding: 10px;
+    transition: background-color 0.5s ,color 0.25s;
+}
+.Send:hover{
+    background-color: hsl(231, 26%, 88%);
+    color: hsl(20, 17%, 36%);
+}
+.Send:active{
+    background-color: hsl(231, 26%, 58%);
+    color: hsl(20, 17%, 36%);
+}
+#Input2{
+    padding-left: 15px;
+}
+
+
+#dialogText{
+    font-family: "Red Hat Display",sans-serif ;
+    font-size: 13px;
+    font-weight: 100;
+    color: antiquewhite;
+    width: 360px;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+    letter-spacing: 3px;
+}

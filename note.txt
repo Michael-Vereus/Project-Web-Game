@@ -1,0 +1,38 @@
+list playable wayang :
+    -Yudhistira
+    -Werkudara
+    -Arjuna
+    -Gatotkaca
+
+
+if (hp == null , Att=null, defense = null){
+            dialogText.textContent = "Please Choose a Wayang First !"
+        }
+        else if ( hp <= 0){
+            Action.textContent =""
+            dialogText.textContent = "Y O U  D I E D"
+            Opsi.textContent="Refresh to restart."
+        }
+        else if (hp > 0){
+            RnG = Math.floor = (Math.random() * 3) + 1
+            if (RnG == 1){
+                Action.textContent = ""
+                Opsi.textContent = "Its an empty room.... (0)Back to previous room"
+            } 
+            else if (RnG == 2){
+                dialogText.textContent = "Test2"
+            }
+            else if (RnG == 3){
+                dialogText.textContent = "Test3"
+            }
+        }
+
+        if (hp == null , Att=null, defense = null){
+            dialogText.textContent = "Please Choose a Wayang First !"
+        }
+        else if ( hp <= 0){
+            Action.textContent =""
+            dialogText.textContent = "Y O U  D I E D"
+            Opsi.textContent="Refresh to restart."
+        }
+        else
