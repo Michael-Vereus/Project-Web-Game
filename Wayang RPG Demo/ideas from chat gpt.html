@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dungeon Explorer</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #game { width: 300px; margin: 50px auto; }
+        #output { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <h1>Dungeon Explorer</h1>
+        <div id="output"></div>
+        <input type="text" id="input" placeholder="Enter your choice" />
+        <button onclick="handleInput()">Submit</button>
+    </div>
+
+    <script>
+        let player = { class: '', health: 0, attack: 0, defense: 0, xp: 0, level: 1, inventory: [] };
+        let currentRoom = 0;
+        let monster = null;
+
+        const rooms = [
+            { type: 'empty' },
+            { type: 'monster', name: 'Goblin', health: 10, attack: 2 },
+            { type: 'treasure', item: 'Health Potion' },
+            { type: 'monster', name: 'Skeleton', health: 15, attack: 3 },
+            { type: 'empty' }
+        ];
+
+        function startGame() {
+            document.getElementById('output').innerText = "Choose your class:\n1. Warrior\n2. Mage\n3. Rogue";
+        }
+
+        function handleInput() {
+            const input = document.getElementById('input').value;
+            document.getElementById('input').value = '';
+            
+            if (player.class === '') {
+                chooseClass(input);
+            } else if (monster) {
+                handleCombat(input);
+            } else {
+                playGame(input);
+            }
+        }
+
+        function chooseClass(input) {
+            if (input === '1') {
+                player.class = 'Warrior';
+                player.health = 20;
+                player.attack = 5;
+                player.defense = 3;
+            } else if (input === '2') {
+                player.class = 'Mage';
+                player.health = 15;
+                player.attack = 7;
+                player.defense = 2;
+            } else if (input === '3') {
+                player.class = 'Rogue';
+                player.health = 18;
+                player.attack = 6;
+                player.defense = 4;
+            }
+            document.getElementById('output').innerText = `You chose ${player.class}. Your adventure begins!`;
+            nextRoom();
+        }
+
+        function nextRoom() {
+            if (currentRoom >= rooms.length) {
+                document.getElementById('output').innerText = "You have cleared the dungeon! Congratulations!";
+                return;
+            }
+
+            const room = rooms[currentRoom];
+            currentRoom++;
+            if (room.type === 'empty') {
+                document.getElementById('output').innerText = "You enter an empty room. What do you want to do?\n1. Move to the next room\n2. Check your inventory\n3. View your stats";
+            } else if (room.type === 'monster') {
+                monster = { name: room.name, health: room.health, attack: room.attack };
+                document.getElementById('output').innerText = `A wild ${room.name} appears! What do you want to do?\n1. Attack\n2. Defend\n3. Use Item`;
+            } else if (room.type === 'treasure') {
+                player.inventory.push(room.item);
+                document.getElementById('output').innerText = `You find a treasure chest! Inside, you find a ${room.item}. What do you want to do?\n1. Move to the next room\n2. Check your inventory\n3. View your stats`;
+            }
+        }
+
+        function handleCombat(input) {
+            if (input === '1') {
+                attackMonster();
+            } else if (input === '2') {
+                defend();
+            } else if (input === '3') {
+                useItem();
+            }
+            if (monster.health <= 0) {
+                document.getElementById('output').innerText = `You defeated the ${monster.name}! What do you want to do?\n1. Move to the next room\n2. Check your inventory\n3. View your stats`;
+                monster = null;
+            } else {
+                monsterAttack();
+            }
+        }
+
+        function attackMonster() {
+            const damage = Math.floor(Math.random() * player.attack) + 1;
+            monster.health -= damage;
+            document.getElementById('output').innerText += `\nYou attack the ${monster.name} and deal ${damage} damage.`;
+        }
+
+        function defend() {
+            document.getElementById('output').innerText += `\nYou brace yourself for the ${monster.name}'s attack.`;
+        }
+
+        function useItem() {
+            if (player.inventory.includes('Health Potion')) {
+                player.health += 10;
+                player.inventory.splice(player.inventory.indexOf('Health Potion'), 1);
+                document.getElementById('output').innerText += `\nYou use a Health Potion and restore 10 health.`;
+            } else {
+                document.getElementById('output').innerText += `\nYou have no items to use.`;
+            }
+        }
+
+        function monsterAttack() {
+            const damage = Math.floor(Math.random() * monster.attack) + 1;
+            player.health -= damage;
+            document.getElementById('output').innerText += `\nThe ${monster.name} attacks you and deals ${damage} damage. You have ${player.health} health left.`;
+            if (player.health <= 0) {
+                document.getElementById('output').innerText = "You have been defeated. Game over.";
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+            player = { class: '', health: 0, attack: 0, defense: 0, xp: 0, level: 1, inventory: [] };
+            currentRoom = 0;
+            monster = null;
+            startGame();
+        }
+
+        function playGame(input) {
+            if (input === '1') {
+                nextRoom();
+            } else if (input === '2') {
+                document.getElementById('output').innerText = `Inventory: ${player.inventory.join(', ')}`;
+            } else if (input === '3') {
+                document.getElementById('output').innerText = `Stats: \nClass: ${player.class}\nHealth: ${player.health}\nAttack: ${player.attack}\nDefense: ${player.defense}\nXP: ${player.xp}\nLevel: ${player.level}`;
+            }
+        }
+
+        startGame();
+    </script>
+</body>
+</html>
